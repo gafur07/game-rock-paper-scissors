@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+	font-family: "Barlow Condensed", sans-serif;
+}
+
+.wrapper {
+	@apply flex flex-col items-center w-[100vw] h-[100vh];
+	background: radial-gradient(
+		134.34% 134.34% at 50% 0%,
+    #1f3757 0%,
+    #131537 100%
+	);
+
+	.scoreboard {
+		@apply w-[700px] h-[150px] rounded-md flex justify-between border-2 border-white items-center mt-[50px];
+
+		.title {
+			@apply pl-[30px]
+		}
+		.score {
+			@apply w-[150px] h-[114px] bg-white flex flex-col mr-[30px] rounded-md border-2 border-white justify-center items-center;
+
+			h1 {
+				@apply text-[#565468] text-[56px];
+				font-family: "Barlow", sans-serif;
+			}
+
+			p {
+				@apply text-[#2a45c2] font-bold text-left;
+				line-height: 19px;
+  			letter-spacing: 2.5px;
+			}
+		}
+	}
+
+	.hands {
+		background: url("./images/triangle.png");
+		background-position: center;
+		background-repeat: no-repeat;
+		visibility: visible;
+		opacity: 1;
+		position: relative;
+		width: 476px;
+		height: 430px;
+		margin-top: 100px;
+		display: flex;
+		z-index: 0;
+		flex-wrap: wrap;
+		justify-content: center;
+		
+		&.active {
+			display: none;
+		}
+
+		img {
+			width: 200px;
+			height: 200px;
+			display: block;
+		}
+
+		.hand {
+			@apply cursor-pointer duration-200;
+
+			&:hover {
+				transform: translate3d(0px, -8px, 0px);
+			}
+
+
+			.paper {
+				@apply mr-[20px]
+			}
+			.scissors {
+				@apply ml-[20px]
+			}
+		}
+	}
+
+	.contest {
+		@apply mt-[50px] w-[900px] hidden;
+
+		&.active {
+			display: flex;
+		}
+
+		& > div {
+			flex: 1;
+			align-items: center
+		}
+		img {
+			@apply w-[275px] h-[275px]
+		}
+
+		h1 {
+			@apply text-white text-[20px] mt-[20px] mb-[50px] text-center
+		}
+
+		.newGame {
+			@apply bg-white py-[12px] px-[24px] duration-200;
+			color: hsl(229, 25%, 31%);
+
+			&:hover {
+				background: rgb(218, 218, 218);
+  			transform: translate3d(0px, -2px, 0px);
+			}
+		}
+
+		.handImageContainer  {
+			@apply flex justify-center
+		}
+
+		.referee {
+			@apply flex flex-col justify-center items-center;
+
+			h1 {
+				font-size: 45px;
+				color: #fff;
+			}
+		}
+
+		.computerhand  {
+			@apply flex flex-col
+		}
+	}
+}
+
+
+@media screen and (max-width: 900px) {
+	.wrapper {
+		.contest {
+			@apply w-[100%] mx-auto;
+			img {
+				@apply w-[100%] h-full
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.wrapper {
+		.scoreboard {
+			@apply w-[90%] mx-auto;
+		}
+
+		.contest {
+			.decision {
+				h1 {
+					@apply text-[35px]
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.wrapper {
+		.scoreboard {
+			@apply gap-4;
+
+			.score {
+				@apply w-[30%]
+			}
+		}
+
+		.hands {
+			@apply w-full;
+			.hand {
+				img {
+					@apply w-full h-full;
+				}
+			}
+		}
+		.contest {
+			.referee {
+				.newGame {
+					@apply bottom-[20%] absolute
+				}
+				.decision {
+					h1 {
+						@apply text-[25px]
+					}
+				}
+			}
+		}
+	}	
+}
+
+@media screen and (max-width: 420px) {
+	.wrapper {
+		.hands {
+			height: 200px;
+			.hand {
+				img {
+					@apply w-[150px] h-[150px]
+				}
+			}
+		}
+	}
+}
